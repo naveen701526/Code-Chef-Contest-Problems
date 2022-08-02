@@ -1,28 +1,18 @@
 def answer_finder():
     a, b = [int(x) for x in input().split()]
     gcd_value = gcd(a, b)
-    lcm_value = lcm(a, b)
+    lcm_value = lcm(a, b, gcd_value)
     print(gcd_value, ' ', lcm_value)
 
 
 def gcd(a, b):
-    temp = min(a, b)
-    ans = 1
-    for i in range(2, temp+1):
-        if a % i == 0 and b % i == 0:
-            ans = i
-
-    return ans
+    if a%b== 0:
+        return b
+    return gcd(b, a%b)
 
 
-def lcm(a, b):
-    temp = a*b
-    ans = max(a, b)
-    for i in range(ans+1, temp+1):
-        if i % a == 0 and i % b == 0:
-            ans = i
-            break
-    return ans
+def lcm(a, b, gcd_value):
+    return (a*b)//gcd_value
 
 
 test_cases = int(input())
